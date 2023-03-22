@@ -84,6 +84,19 @@ def test_set_certificate_authority(default_repo):
     assert default_repo.session.verify == "/path/to/cert"
 
 
+def test_no_ca_verify():
+    repo = repository.Repository(
+        repository_url=utils.DEFAULT_REPOSITORY,
+        username='username',
+        password='password',
+    )
+
+    assert repo.session.verify is True
+
+    repo.set_certificate_authority('/path/to/cert', True)
+    assert not repo.session.verify
+
+
 def test_make_user_agent_string(default_repo):
     """Add twine to User-Agent session header."""
     assert "twine/" in default_repo.session.headers["User-Agent"]
