@@ -15,6 +15,7 @@
 import argparse
 import logging
 import os.path
+import warnings
 from typing import Dict, List, cast
 
 import requests
@@ -145,10 +146,13 @@ def upload(upload_settings: settings.Settings, dists: List[str]) -> None:
             logger.warning(skip_message)
             continue
 
-        resp = repository.upload(package)
-        logger.info(f"Response from {resp.url}:\n{resp.status_code} {resp.reason}")
-        if resp.text:
-            logger.info(resp.text)
+        # Feat 387. Trusted host option.
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            resp = repository.upload(package)
+            logger.info(f"Response from {resp.url}:\n{resp.status_code} {resp.reason}")
+            if resp.text:
+                logger.info(resp.text)
 
         # Bug 92. If we get a redirect we should abort because something seems
         # funky. The behaviour is not well defined and redirects being issued
