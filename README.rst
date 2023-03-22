@@ -10,6 +10,15 @@
 .. image:: https://img.shields.io/github/actions/workflow/status/pypa/twine/main.yml?branch=main
    :target: https://github.com/pypa/twine/actions
 
+About this fork
+------------
+This project was forked from the original Twine repository. The 
+only difference between this fork and original one is the `--trusted` 
+option. This option was added to `twine upload`command in order to make 
+able to skip SSL certificate validation for trusted hosts.
+
+More information can be found in [this issue](https://github.com/pypa/twine/issues/387).
+
 twine
 =====
 
