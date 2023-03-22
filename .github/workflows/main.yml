@@ -12,12 +12,8 @@ env:
   MIN_PYTHON_VERSION: "3.7"
   DEFAULT_PYTHON_VERSION: "3.9"
 
-permissions:
-  contents: read
-
 jobs:
   release:
-    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
