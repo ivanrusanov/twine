@@ -11,7 +11,7 @@
    :target: https://github.com/pypa/twine/actions
 
 About this fork
-------------
+---------------
 
 This project was forked from the original Twine repository. The 
 only difference between this fork and original one is the `--trusted` 
